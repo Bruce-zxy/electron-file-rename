@@ -5,13 +5,31 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "pack": "electron-builder --dir",
-        "dist": "electron-builder"
+        "pack": "electron-packager . change_filename --win --out ./dist --arch=x64 --app-version=0.0.1 --electron-version=8.0.3",
+        "dist:mac": "electron-builder --mac ",
+        "dist:win": "electron-builder --win ",
+        "dist:linux": "electron-builder --linux  "
     },
     "build": {
-        "appId": "JQ.0301",
+        "appId": "com.dapaidang.app",
+        "electronVersion": "8.1.1",
+        "publish": [{
+            "provider": "generic",
+            "url": "http://www.baidu.com/"
+        }],
         "mac": {
-            "category": "your.app.category.type"
+            "target": "dmg",
+            "icon": "./icon.ico"
+        },
+        "win": {
+            "target": ["nsis", "zip", "portable"],
+            "icon": "./icon.ico"
+        },
+        "linux": {
+            "target": [
+                "AppImage"
+            ],
+            "icon": "./icon.ico"
         }
     },
     "repository": "https://github.com/electron/electron-quick-start",
@@ -25,7 +43,7 @@
     "author": "GitHub",
     "license": "CC0-1.0",
     "devDependencies": {
-        "electron": "^8.0.3",
+        "electron": "^8.1.1",
         "electron-builder": "^22.4.0"
     },
     "dependencies": {
